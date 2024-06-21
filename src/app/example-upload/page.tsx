@@ -1,12 +1,12 @@
 "use client";
 
-import { UploadButton } from "@/lib/utils";
+import { UploadDropzone } from "@/lib/utils";
 
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <UploadButton
-        endpoint="imageUploader"
+      <UploadDropzone
+        endpoint="freePDFUploader"
         onClientUploadComplete={(res) => {
           // Do something with the response
           console.log("Files: ", res);
