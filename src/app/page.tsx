@@ -30,6 +30,7 @@ export default function HomePage() {
               <button onClick={() => signOut({ callbackUrl: "/" })}>
                 logout
               </button>
+              <Link href="/example-upload">Upload</Link>
             </>
           ) : (
             <button onClick={() => signIn()}>login</button>
