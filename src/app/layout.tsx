@@ -1,10 +1,18 @@
 import "@/styles/globals.css";
 
-import { GeistSans } from "geist/font/sans";
-import Providers from "./Providers";
+import { cn } from "@/lib/utils";
+import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
+import { Inter as FontSans } from "next/font/google";
 import { extractRouterConfig } from "uploadthing/server";
 import { ourFileRouter } from "./api/uploadthing/core";
-import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
+import Providers from "./Providers";
+import { Toaster } from "@/components/ui/sonner";
+import Header from "@/components/Header";
+
+const fontSans = FontSans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
 
 export const metadata = {
   title: "Create T3 App",
@@ -18,12 +26,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      className={`${GeistSans.variable}`}
-      suppressHydrationWarning
-    >
-      <body>
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={cn(
+          "min-h-screen bg-background font-sans text-primary antialiased",
+          fontSans.variable,
+        )}
+      >
         <NextSSRPlugin
           /**
            * The `extractRouterConfig` will extract **only** the route configs
@@ -33,6 +42,7 @@ export default function RootLayout({
            */
           routerConfig={extractRouterConfig(ourFileRouter)}
         />
+        <Toaster richColors position="top-center" />
         <Providers>
           <>{children}</>
         </Providers>
