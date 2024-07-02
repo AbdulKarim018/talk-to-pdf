@@ -7,6 +7,8 @@ import { OpenAIStream, StreamingTextResponse } from "ai";
 import { type NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
+export const maxDuration = 60; // This function can run for a maximum of 60 seconds
+
 export async function POST(req: NextRequest) {
   const session = await getServerAuthSession();
 
