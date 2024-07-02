@@ -88,7 +88,8 @@ export const ourFileRouter = {
 
       revalidatePath("/chat");
 
-      void startProcessingPDF(pdf.id);
+      // eslint-disable-next-line
+      startProcessingPDF(pdf.id);
 
       // This code RUNS ON YOUR SERVER after upload
       console.log("Upload complete for userId:", metadata.userId);
