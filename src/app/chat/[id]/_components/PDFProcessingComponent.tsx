@@ -10,6 +10,7 @@ type Props = {
 
 export function PDFProcessingComponent({ pdfId }: Props) {
   useEffect(() => {
+    // eslint-disable-next-line
     const tm = setInterval(async () => {
       await checkPDFStatus(pdfId);
     }, 2500);

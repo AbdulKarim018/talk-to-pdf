@@ -38,6 +38,7 @@ export const startProcessingPDF = async (pdfId: string) => {
       chunkOverlap: 20,
     });
 
+    // eslint-disable-next-line
     const docs = await textSplitter.splitDocuments(pages);
 
     // console.log("docs after splitting metadata ===> ", docs[0]?.metadata);
@@ -53,12 +54,15 @@ export const startProcessingPDF = async (pdfId: string) => {
     const vectorStore = await getVectorStore();
 
     await vectorStore.addDocuments([
+      // eslint-disable-next-line
       ...docs.map((doc) => ({
         metadata: {
           ...doc.metadata,
           pdfId,
+          // eslint-disable-next-line
           pdfTitle: doc.metadata.title,
         },
+        // eslint-disable-next-line
         pageContent: doc.pageContent,
       })),
     ]);

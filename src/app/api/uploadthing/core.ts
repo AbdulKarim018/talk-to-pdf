@@ -57,7 +57,7 @@ export const ourFileRouter = {
   freePDFUploader: f({ pdf: { maxFileSize: "1MB", maxFileCount: 1 } })
     // Set permissions and file types for this FileRoute
     // .middleware(async ({ req }) => {
-    .middleware(async ({ req }) => {
+    .middleware(async () => {
       // This code runs on your server before upload
       const session = await auth();
 
@@ -88,7 +88,7 @@ export const ourFileRouter = {
 
       revalidatePath("/chat");
 
-      startProcessingPDF(pdf.id);
+      void startProcessingPDF(pdf.id);
 
       // This code RUNS ON YOUR SERVER after upload
       console.log("Upload complete for userId:", metadata.userId);
@@ -101,7 +101,7 @@ export const ourFileRouter = {
   proPDFUploader: f({ pdf: { maxFileSize: "16MB", maxFileCount: 1 } })
     // Set permissions and file types for this FileRoute
     // .middleware(async ({ req }) => {
-    .middleware(async ({ req }) => {
+    .middleware(async () => {
       // This code runs on your server before upload
       const session = await auth();
 

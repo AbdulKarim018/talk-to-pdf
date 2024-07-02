@@ -39,6 +39,7 @@ const ChatComponent = ({ className, chat }: Props) => {
       body: {
         chatId: chat.id,
       },
+      // eslint-disable-next-line
       onFinish: async (message) => {
         await addMessageToChat(chat.id, message);
       },
@@ -73,16 +74,13 @@ const ChatComponent = ({ className, chat }: Props) => {
                     remarkPlugins={[remarkGfm]}
                     rehypePlugins={[rehypeRaw]}
                     components={{
-                      code({
-                        node,
-                        inline,
-                        className,
-                        children,
-                        ...props
-                      }: any) {
+                      // eslint-disable-next-line
+                      code({ inline, className, children, ...props }: any) {
+                        // eslint-disable-next-line
                         const match = /language-(\w+)/.exec(className || "");
 
                         return !inline && match ? (
+                          // eslint-disable-next-line
                           <SyntaxHighlighter
                             style={dracula}
                             PreTag="div"
@@ -92,6 +90,7 @@ const ChatComponent = ({ className, chat }: Props) => {
                             {String(children).replace(/\n$/, "")}
                           </SyntaxHighlighter>
                         ) : (
+                          // eslint-disable-next-line
                           <code className={className} {...props}>
                             {children}
                           </code>

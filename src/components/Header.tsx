@@ -19,7 +19,7 @@ type Props = {
 
 export default async function Header({ className }: Props) {
   const session = await getServerAuthSession();
-  const name = session?.user.name || "~";
+  const name = session?.user.name ?? "~";
   return (
     <header
       className={cn(
@@ -45,7 +45,7 @@ export default async function Header({ className }: Props) {
                   <AvatarFallback>
                     {name
                       .split(" ")
-                      .map((word) => (word[0] || "").toUpperCase())
+                      .map((word) => (word[0] ?? "").toUpperCase())
                       .join("")}
                   </AvatarFallback>
                 </Avatar>

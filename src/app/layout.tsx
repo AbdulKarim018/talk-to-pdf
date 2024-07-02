@@ -1,13 +1,12 @@
 import "@/styles/globals.css";
 
+import { Toaster } from "@/components/ui/sonner";
 import { cn } from "@/lib/utils";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { Inter as FontSans } from "next/font/google";
 import { extractRouterConfig } from "uploadthing/server";
 import { ourFileRouter } from "./api/uploadthing/core";
 import Providers from "./Providers";
-import { Toaster } from "@/components/ui/sonner";
-import Header from "@/components/Header";
 
 const fontSans = FontSans({
   subsets: ["latin"],
