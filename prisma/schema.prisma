@@ -54,8 +54,7 @@ model User {
     accounts      Account[]
     sessions      Session[]
 
-    subscriptionId String?
-    Subscription   Subscription?
+    subscription Subscription?
 }
 
 model VerificationToken {
@@ -100,7 +99,7 @@ model Message {
     role    MessageRole
     chatId  String
 
-    chat Chat @relation(fields: [chatId], references: [id], onDelete: Cascade)
+    chat Chat @relation(fields: [chatId], references: [id])
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
@@ -142,12 +141,10 @@ model Subscription {
     status SubscriptionStatus
 
     userId String @unique
-    user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+    user   User   @relation(fields: [userId], references: [id])
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
-
-    @@unique([ls_subscription_id, userId])
 }
 
 enum SubscriptionStatus {
