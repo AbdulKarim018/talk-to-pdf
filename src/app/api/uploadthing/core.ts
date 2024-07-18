@@ -7,7 +7,7 @@ import { UploadThingError } from "uploadthing/server";
 
 const f = createUploadthing();
 
-const auth = () => getServerAuthSession();
+const auth = getServerAuthSession;
 
 // FileRouter for your app, can contain multiple FileRoutes
 export const ourFileRouter = {
@@ -109,12 +109,6 @@ export const ourFileRouter = {
       // If you throw, the user will not be able to upload
       if (!session) throw new UploadThingError("Unauthorized");
 
-      if (session.user.plan !== "PRO") {
-        throw new UploadThingError(
-          "You must be a PRO user to upload PDFs larger than 1MB",
-        );
-      }
-
       // Whatever is returned here is accessible in onUploadComplete as `metadata`
       return { userId: session.user.id };
     })
@@ -137,17 +131,18 @@ export const ourFileRouter = {
         },
       });
 
-      // revalidatePath("/chat");
+      revalidatePath("/chat");
+
+      // eslint-disable-next-line
+      await startProcessingPDF(pdf.id);
 
       // This code RUNS ON YOUR SERVER after upload
-      // console.log("Upload complete for userId:", metadata.userId);
+      console.log("Upload complete for userId:", metadata.userId);
 
-      // console.log("file url", file.url);
+      console.log("file url", file.url);
 
       // !!! Whatever is returned here is sent to the clientside `onClientUploadComplete` callback
-      // return { chatId: chat.id, uploadedBy: metadata.userId };
-
-      return { chatId: chat.id };
+      return { chatId: chat.id, uploadedBy: metadata.userId };
     }),
 } satisfies FileRouter;
 

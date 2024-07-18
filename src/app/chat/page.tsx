@@ -1,8 +1,8 @@
 import { getUserChats } from "@/server/actions/chat";
-import Header from "@/components/Header";
 import { getServerAuthSession } from "@/server/auth";
 import Link from "next/link";
 import PDFUploadDropzone from "./_components/PDFUploadDropzone";
+import Navbar from "@/components/Navbar";
 
 export default async function ChatPage() {
   const session = await getServerAuthSession();
@@ -17,7 +17,7 @@ export default async function ChatPage() {
 
   return (
     <div className="w-full">
-      <Header />
+      <Navbar />
       <main className="container mx-auto max-w-6xl">
         <PDFUploadDropzone session={session} />
         <p className="text-center">Upload a PDF to start a new chat</p>

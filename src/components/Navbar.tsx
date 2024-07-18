@@ -12,16 +12,17 @@ import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Button } from "./ui/button";
 import { cn } from "@/lib/utils";
+import React from "react";
 
 type Props = {
   className?: string;
 };
 
-export default async function Header({ className }: Props) {
+export default async function Navbar({ className }: Props) {
   const session = await getServerAuthSession();
   const name = session?.user.name ?? "~";
   return (
-    <header
+    <nav
       className={cn(
         "flex items-center justify-between border-b border-gray-200 px-2 py-4",
         className,
@@ -52,15 +53,20 @@ export default async function Header({ className }: Props) {
               </DropdownMenuTrigger>
               <DropdownMenuContent className="w-56">
                 {/* <DropdownMenuLabel>My Account</DropdownMenuLabel> */}
-                <DropdownMenuLabel>{name}</DropdownMenuLabel>
+                <DropdownMenuLabel>
+                  {name} ({session.user.email})
+                </DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem disabled>
                   <User2Icon className="mr-2 size-4" />
                   <span>Profile</span>
                 </DropdownMenuItem>
-                <DropdownMenuItem disabled>
-                  <DollarSignIcon className="mr-2 h-4 w-4" />
-                  <span>Subscription</span>
+                <DropdownMenuItem asChild>
+                  {/* <Link href="https://talk2pdf-dev.lemonsqueezy.com"> */}
+                  <Link href="/plans">
+                    <DollarSignIcon className="mr-2 h-4 w-4" />
+                    <span>Subscription</span>
+                  </Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem asChild>
@@ -82,6 +88,6 @@ export default async function Header({ className }: Props) {
           </Link>
         )}
       </div>
-    </header>
+    </nav>
   );
 }

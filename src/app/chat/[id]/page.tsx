@@ -1,10 +1,10 @@
-import Header from "@/components/Header";
 import { getChat } from "@/server/actions/chat";
 import { getServerAuthSession } from "@/server/auth";
 import { notFound } from "next/navigation";
 import BackButton from "./_components/BackButton";
 import ChatComponent from "./_components/ChatComponent";
 import { PDFProcessingComponent } from "./_components/PDFProcessingComponent";
+import Navbar from "@/components/Navbar";
 
 type Props = {
   params: {
@@ -51,7 +51,7 @@ export default async function ChatPage({ params: { id } }: Props) {
 
   return (
     <>
-      <Header />
+      <Navbar />
       <main className="container mx-auto flex max-w-6xl flex-wrap items-center justify-center">
         <iframe src={chat.PDF.fileUrl} className="h-screen lg:w-1/2"></iframe>
         <ChatComponent className="h-screen lg:w-1/2" chat={chat} />

@@ -31,6 +31,8 @@ export const env = createEnv({
     HF_AI_API_KEY: z.string().min(1),
     PINECONE_API_KEY: z.string().min(1),
     PINECONE_INDEX: z.string().min(1),
+    LEMONSQUEEZY_API_KEY: z.string().min(1),
+    LEMONSQUEEZY_WEBHOOK_SECRET: z.string().min(1),
   },
 
   /**
@@ -60,6 +62,8 @@ export const env = createEnv({
     CHAT_AI_API_URL: process.env.CHAT_AI_API_URL,
     PINECONE_API_KEY: process.env.PINECONE_API_KEY,
     PINECONE_INDEX: process.env.PINECONE_INDEX,
+    LEMONSQUEEZY_API_KEY: process.env.LEMONSQUEEZY_API_KEY,
+    LEMONSQUEEZY_WEBHOOK_SECRET: process.env.LEMONSQUEEZY_WEBHOOK_SECRET,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially
