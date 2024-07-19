@@ -137,7 +137,7 @@ export default async function PlansPage() {
                     } else {
                       redirect(
                         encodeURI(
-                          `${checkoutUrl}?checkout[custom][user_id]=${session.user.id}`,
+                          `${checkoutUrl}?checkout[custom][user_id]=${session?.user.id}`,
                         ),
                       );
                     }
